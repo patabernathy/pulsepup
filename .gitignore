@@ -1,0 +1,24 @@
+# Python virtual environments
+/venv/
+/.venv/
+
+# Python caches and bytecode anywhere in the project
+__pycache__/
+*.py[cod]
+
+# Production configuration
+/config.json
+
+# Sensitive Nagios test data
+/sample-status.dat
+
+# Recovered conversations, transcripts, and summaries
+/recovered-context/
+
+# Local environment variables
+.env
+.env.*
+!.env.example
+
+# Generated logs
+*.log

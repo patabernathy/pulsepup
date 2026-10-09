@@ -1,0 +1,422 @@
+/* PulsePup - Nagios Core Dashboard styles */
+
+:root {
+    --bg: #0f1419;
+    --bg-card: #1a2332;
+    --bg-hover: #243044;
+    --text: #e7ecf3;
+    --text-muted: #8b9cb3;
+    --border: #2d3a4f;
+    --accent: #3b82f6;
+
+    --up: #22c55e;
+    --down: #ef4444;
+    --unreachable: #f97316;
+    --ok: #22c55e;
+    --warning: #eab308;
+    --critical: #ef4444;
+    --unknown: #a855f7;
+    --pending: #6b7280;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-left: 0.75rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.last-refresh {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.btn-refresh {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-refresh:hover {
+    opacity: 0.9;
+}
+
+/* Error banner */
+.error-banner {
+    background: #7f1d1d;
+    color: #fecaca;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #991b1b;
+}
+
+.error-banner.hidden {
+    display: none;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 1.5rem;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.tab:hover {
+    color: var(--text);
+}
+
+.tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* Content */
+.content {
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Summary cards */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.card h2 {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.stat-big {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.stat-problems {
+    color: var(--critical);
+}
+
+.stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.card-problems .stat-row {
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Clickable cards — same look as v1.0, pointer only */
+.card-clickable {
+    cursor: pointer;
+}
+
+.card-clickable:hover {
+    background: var(--bg-hover);
+}
+
+/* State badges */
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.badge-up, .badge-ok, .state-up, .state-ok {
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--up);
+}
+
+.badge-down, .badge-critical, .state-down, .state-critical {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--down);
+}
+
+.badge-unreachable, .state-unreachable {
+    background: rgba(249, 115, 22, 0.2);
+    color: var(--unreachable);
+}
+
+.badge-warning, .state-warning {
+    background: rgba(234, 179, 8, 0.2);
+    color: var(--warning);
+}
+
+.badge-unknown, .state-unknown {
+    background: rgba(168, 85, 247, 0.2);
+    color: var(--unknown);
+}
+
+.badge-pending, .state-pending {
+    background: rgba(107, 114, 128, 0.2);
+    color: var(--pending);
+}
+
+/* Host links — match normal table text */
+.host-link {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.host-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.filter-select {
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+/* Tables */
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.data-table th:hover {
+    color: var(--text);
+}
+
+.data-table td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.data-table tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.output-cell {
+    max-width: 400px;
+    word-break: break-word;
+    color: var(--text-muted);
+}
+
+.table-count {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.empty-row td {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+}
+
+/* Host detail view — uses existing card/table styles */
+.host-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.host-detail-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn-back {
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-back:hover {
+    background: var(--bg-hover);
+}
+
+.host-detail-summary {
+    margin-bottom: 1.25rem;
+}
+
+.host-detail-status {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.host-detail-output {
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    word-break: break-word;
+}
+
+.host-meta {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.host-services-summary {
+    margin-bottom: 1rem;
+}
+
+.host-services-summary h3 {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.host-services-summary .stat-row {
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .subtitle {
+        display: block;
+        margin-left: 0;
+        margin-top: 0.25rem;
+    }
+
+    .tabs {
+        overflow-x: auto;
+    }
+}

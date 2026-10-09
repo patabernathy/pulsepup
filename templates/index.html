@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulsePup - Nagios Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <h1>PulsePup</h1>
+            <span class="subtitle">Nagios Core Dashboard</span>
+        </div>
+        <div class="header-right">
+            <span id="last-refresh" class="last-refresh">Loading...</span>
+            <button id="refresh-btn" class="btn-refresh" title="Refresh now">Refresh</button>
+        </div>
+    </header>
+
+    <!-- Error banner shown when status.dat cannot be read -->
+    <div id="error-banner" class="error-banner hidden" role="alert"></div>
+
+    <nav class="tabs" role="tablist">
+        <button class="tab active" data-tab="dashboard" role="tab" aria-selected="true">Dashboard</button>
+        <button class="tab" data-tab="hosts" role="tab">Hosts</button>
+        <button class="tab" data-tab="services" role="tab">Services</button>
+        <button class="tab" data-tab="problems" role="tab">Problems</button>
+    </nav>
+
+    <main class="content">
+        <!-- Dashboard tab -->
+        <section id="tab-dashboard" class="tab-panel active" role="tabpanel">
+            <div class="summary-grid">
+                <div class="card card-clickable" data-nav-tab="hosts" role="link" tabindex="0" title="View all hosts">
+                    <h2>Hosts</h2>
+                    <div class="stat-big" id="hosts-total">-</div>
+                    <div class="stat-row">
+                        <span class="badge badge-up">Up <strong id="hosts-up">-</strong></span>
+                        <span class="badge badge-down">Down <strong id="hosts-down">-</strong></span>
+                        <span class="badge badge-unreachable">Unreachable <strong id="hosts-unreachable">-</strong></span>
+                        <span class="badge badge-pending">Pending <strong id="hosts-pending">-</strong></span>
+                    </div>
+                </div>
+                <div class="card card-clickable" data-nav-tab="services" role="link" tabindex="0" title="View all services">
+                    <h2>Services</h2>
+                    <div class="stat-big" id="services-total">-</div>
+                    <div class="stat-row">
+                        <span class="badge badge-ok">OK <strong id="services-ok">-</strong></span>
+                        <span class="badge badge-warning">Warning <strong id="services-warning">-</strong></span>
+                        <span class="badge badge-critical">Critical <strong id="services-critical">-</strong></span>
+                        <span class="badge badge-unknown">Unknown <strong id="services-unknown">-</strong></span>
+                        <span class="badge badge-pending">Pending <strong id="services-pending">-</strong></span>
+                    </div>
+                </div>
+                <div class="card card-problems card-clickable" data-nav-tab="problems" role="link" tabindex="0" title="View current problems">
+                    <h2>Current Problems</h2>
+                    <div class="stat-big stat-problems" id="problems-total">-</div>
+                    <div class="stat-row">
+                        <span>Host problems: <strong id="problems-hosts">-</strong></span>
+                        <span>Service problems: <strong id="problems-services">-</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hosts tab -->
+        <section id="tab-hosts" class="tab-panel" role="tabpanel">
+            <div class="toolbar">
+                <input type="search" id="hosts-search" class="search-input" placeholder="Search hosts...">
+                <select id="hosts-filter" class="filter-select">
+                    <option value="all">All states</option>
+                    <option value="up">Up</option>
+                    <option value="down">Down</option>
+                    <option value="unreachable">Unreachable</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">Host</th>
+                            <th data-sort="state">State</th>
+                            <th data-sort="output">Output</th>
+                            <th data-sort="last_check">Last Check</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hosts-tbody"></tbody>
+                </table>
+            </div>
+            <p id="hosts-count" class="table-count"></p>
+        </section>
+
+        <!-- Host detail view (opened from Hosts tab links) -->
+        <section id="tab-host-detail" class="tab-panel" role="tabpanel">
+            <div class="host-detail-header">
+                <button id="host-detail-back" class="btn-back">&larr; Back to Hosts</button>
+                <h2 id="host-detail-name">Host</h2>
+            </div>
+            <div class="host-detail-summary card">
+                <div class="host-detail-status">
+                    <span id="host-detail-state"></span>
+                    <span id="host-detail-state-type" class="host-meta"></span>
+                </div>
+                <p id="host-detail-output" class="host-detail-output"></p>
+                <p id="host-detail-last-check" class="host-meta"></p>
+            </div>
+            <div class="host-services-summary">
+                <h3>Services on this host</h3>
+                <div id="host-detail-svc-counts" class="stat-row"></div>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>State</th>
+                            <th>Output</th>
+                            <th>Last Check</th>
+                        </tr>
+                    </thead>
+                    <tbody id="host-detail-services-tbody"></tbody>
+                </table>
+            </div>
+            <p id="host-detail-services-count" class="table-count"></p>
+        </section>
+
+        <!-- Services tab -->
+        <section id="tab-services" class="tab-panel" role="tabpanel">
+            <div class="toolbar">
+                <input type="search" id="services-search" class="search-input" placeholder="Search services...">
+                <select id="services-filter" class="filter-select">
+                    <option value="all">All states</option>
+                    <option value="ok">OK</option>
+                    <option value="warning">Warning</option>
+                    <option value="critical">Critical</option>
+                    <option value="unknown">Unknown</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="host">Host</th>
+                            <th data-sort="description">Service</th>
+                            <th data-sort="state">State</th>
+                            <th data-sort="output">Output</th>
+                            <th data-sort="last_check">Last Check</th>
+                        </tr>
+                    </thead>
+                    <tbody id="services-tbody"></tbody>
+                </table>
+            </div>
+            <p id="services-count" class="table-count"></p>
+        </section>
+
+        <!-- Problems tab -->
+        <section id="tab-problems" class="tab-panel" role="tabpanel">
+            <div class="toolbar">
+                <input type="search" id="problems-search" class="search-input" placeholder="Search problems...">
+                <select id="problems-filter" class="filter-select">
+                    <option value="all">All types</option>
+                    <option value="host">Hosts only</option>
+                    <option value="service">Services only</option>
+                </select>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Host</th>
+                            <th>Service</th>
+                            <th>State</th>
+                            <th>Output</th>
+                            <th>Last Check</th>
+                        </tr>
+                    </thead>
+                    <tbody id="problems-tbody"></tbody>
+                </table>
+            </div>
+            <p id="problems-count" class="table-count"></p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>Read-only dashboard &mdash; does not modify Nagios</span>
+    </footer>
+
+    <script>
+        // Refresh interval passed from Flask config
+        window.PULSEPUP_REFRESH_SECONDS = {{ refresh_seconds }};
+    </script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

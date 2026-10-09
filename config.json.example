@@ -1,0 +1,8 @@
+{
+  "status_dat_path": "/usr/local/nagios/var/status.dat",
+  "use_sample_data": true,
+  "sample_dat_path": "sample-status.dat",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "refresh_seconds": 60
+}
