@@ -1,0 +1,903 @@
+########################################
+# PulsePup sample status file
+# Fictional Nagios 4.x data for local testing.
+# No production hosts, addresses, or names.
+########################################
+
+info {
+	created=1728000000
+	version=4.4.14
+	}
+
+programstatus {
+	nagios_pid=1000
+	daemon_mode=1
+	enable_notifications=1
+	active_service_checks_enabled=1
+	active_host_checks_enabled=1
+	}
+
+hoststatus {
+	host_name=dc01
+	check_command=check-host-alive
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 0.30 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+hoststatus {
+	host_name=hyperv01
+	check_command=check-host-alive
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 0.50 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+hoststatus {
+	host_name=nagios01
+	check_command=check-host-alive
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 0.05 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+hoststatus {
+	host_name=so01
+	check_command=check-host-alive
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 0.40 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+hoststatus {
+	host_name=firewall01
+	check_command=check-host-alive
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 0.80 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+hoststatus {
+	host_name=website01
+	check_command=check-host-alive
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 18.00 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Backup Agent
+	check_command=check_nrpe!check_service! -a "service=BackupAgent" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=CPU Load
+	check_command=check_nrpe!check_cpu! "warn=85" "crit=95"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: CPU load is ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=DHCP Server
+	check_command=check_nrpe!check_service! -a "service=DHCPServer" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=DNS Server
+	check_command=check_nrpe!check_service! -a "service=DNS" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Drive Space C:
+	check_command=check_nrpe!check_drivesize! -a "drive=c:" "warn=free <5g" "crit=free <2g"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: C: has 40 GB free.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Drive Space D:
+	check_command=check_nrpe!check_drivesize! -a "drive=d:" "warn=free <5g" "crit=free <2g"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: D: has 100 GB free.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Auth Proxy
+	check_command=check_nrpe!check_service! -a "service=AuthProxy" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Memory Usage
+	check_command=check_nrpe!check_memory! -a type=physical "warn=used >90%" "crit=used >95%"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: physical memory 40% used.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=OS Version
+	check_command=check_nrpe!check_os_version
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Windows Server 2022
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Active Directory
+	check_command=check_nrpe!check_service! -a "service=NTDS" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Active Directory Domain Services is running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Netlogon
+	check_command=check_nrpe!check_service! -a "service=Netlogon" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Netlogon is running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Kerberos
+	check_command=check_nrpe!check_service! -a "service=Kdc" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Kerberos Key Distribution Center is running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Windows Time
+	check_command=check_nrpe!check_service! -a "service=W32Time" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Windows Time is running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=DFS Replication
+	check_command=check_nrpe!check_service! -a "service=DFSR" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=2
+	plugin_output=CRITICAL: DFS Replication is stopped.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=LDAP
+	check_command=check_ldap!-H 10.0.0.11 -p 389
+	has_been_checked=1
+	current_state=0
+	plugin_output=LDAP OK - 10.0.0.11 port 389
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Global Catalog
+	check_command=check_tcp!10.0.0.11!3268
+	has_been_checked=1
+	current_state=0
+	plugin_output=TCP OK - 10.0.0.11 port 3268
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=SYSVOL
+	check_command=check_nrpe!check_share! -a "share=SYSVOL"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: SYSVOL share is available.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Management Port
+	check_command=check_tcp!8443
+	has_been_checked=1
+	current_state=0
+	plugin_output=TCP OK - 0.001 second response time on 10.0.0.11 port 8443
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Log Forwarder
+	check_command=check_nrpe!check_service! -a "service=LogForwarder" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=dc01
+	service_description=Uptime
+	check_command=check_nrpe!check_uptime
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: uptime 30 days.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Backup Agent
+	check_command=check_nrpe!check_service! -a "service=BackupAgent" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=CPU Load
+	check_command=check_nrpe!check_cpu! "warn=85" "crit=95"
+	has_been_checked=1
+	current_state=1
+	plugin_output=WARNING: CPU load is 90%.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Print Manager
+	check_command=check_nrpe!check_service! -a "service=PrintManager" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Drive Space C:
+	check_command=check_nrpe!check_drivesize! -a "drive=c:" "warn=free <5g" "crit=free <2g"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: C: has 20 GB free.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Drive Space D:
+	check_command=check_nrpe!check_drivesize! -a "drive=d:" "warn=free <5g" "crit=free <2g"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: D: has 80 GB free.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Auth Proxy
+	check_command=check_nrpe!check_service! -a "service=AuthProxy" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Memory Usage
+	check_command=check_nrpe!check_memory! -a type=physical "warn=used >90%" "crit=used >95%"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: physical memory 40% used.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Hyper-V
+	check_command=check_nrpe!check_service! -a "service=vmcompute" "service=vmms" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: vmcompute: running, vmms: running
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Hyper-V Host Service
+	check_command=check_nrpe!check_service! -a "service=HvHost" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Hyper-V Host Service is running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=VM Heartbeat
+	check_command=check_nrpe!check_service! -a "service=vmicheartbeat" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Hyper-V Heartbeat is running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Virtual Switch
+	check_command=check_nrpe!check_hyperv_switch
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: virtual switch is up.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Running VMs
+	check_command=check_nrpe!check_hyperv_vms! "warn=running <1" "crit=running <1"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: 4 virtual machines running.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=OS Version
+	check_command=check_nrpe!check_os_version
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: Windows Server 2022
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Management Port
+	check_command=check_tcp!8443
+	has_been_checked=1
+	current_state=0
+	plugin_output=TCP OK - 0.001 second response time on 10.0.0.12 port 8443
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Log Forwarder
+	check_command=check_nrpe!check_service! -a "service=LogForwarder" "crit=state = 'stopped'" "warn=none"
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: All 1 service(s) are ok.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=hyperv01
+	service_description=Uptime
+	check_command=check_nrpe!check_uptime
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: uptime 30 days.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=Current Load
+	check_command=check_local_load!16.0,15.0,14.0!20.0,18.0,16.0
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK - load average: 0.20, 0.15, 0.10
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=Current Users
+	check_command=check_local_users!20!50
+	has_been_checked=1
+	current_state=0
+	plugin_output=USERS OK - 1 users currently logged in
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=HTTP
+	check_command=check_http!-I localhost
+	has_been_checked=1
+	current_state=0
+	plugin_output=HTTP OK: Nagios Core on localhost
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=PING
+	check_command=check_ping!100.0,20%!500.0,60%
+	has_been_checked=1
+	current_state=0
+	plugin_output=PING OK - Packet loss = 0%, RTA = 0.05 ms
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=Root Partition
+	check_command=check_local_disk!20%!10%!/
+	has_been_checked=1
+	current_state=0
+	plugin_output=DISK OK - free space: / 20 GiB (70%)
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=SSH
+	check_command=check_ssh
+	has_been_checked=1
+	current_state=0
+	plugin_output=SSH OK - OpenSSH (protocol 2.0)
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=Swap Usage
+	check_command=check_local_swap!20!10
+	has_been_checked=1
+	current_state=0
+	plugin_output=SWAP OK - 90% free
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=nagios01
+	service_description=Total Processes
+	check_command=check_local_procs!250!400!RSZDT
+	has_been_checked=1
+	current_state=0
+	plugin_output=PROCS OK: 120 processes
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Current Load
+	check_command=check_nrpe!-H 10.0.0.13 -c check_load
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK - load average: 0.40, 0.30, 0.20 on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Root Partition
+	check_command=check_nrpe!-H 10.0.0.13 -c check_disk -a path=/
+	has_been_checked=1
+	current_state=0
+	plugin_output=DISK OK - free space: / 20 GiB (70%) on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=NSM Disk
+	check_command=check_nrpe!-H 10.0.0.13 -c check_disk -a path=/nsm "warn=free <20%" "crit=free <10%"
+	has_been_checked=1
+	current_state=2
+	plugin_output=CRITICAL: /nsm has 8 GiB free (8%) on 10.0.0.13.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=SSH
+	check_command=check_ssh!10.0.0.13
+	has_been_checked=1
+	current_state=0
+	plugin_output=SSH OK - OpenSSH (protocol 2.0) on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Docker
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-docker
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-docker is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Salt
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-salt
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-salt is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Security Onion Console
+	check_command=check_http!-I 10.0.0.13 -S -p 443
+	has_been_checked=1
+	current_state=0
+	plugin_output=HTTP OK: Security Onion Console at 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Elasticsearch
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-elasticsearch
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-elasticsearch is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Logstash
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-logstash
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-logstash is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Kibana
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-kibana
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-kibana is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Redis
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-redis
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-redis is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=ElastAlert
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-elastalert
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-elastalert is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Elastic Agent
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-elastic-agent
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-elastic-agent is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Suricata
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-suricata
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-suricata is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Zeek
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-zeek
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-zeek is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Stenographer
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-steno
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-steno is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=so01
+	service_description=Strelka
+	check_command=check_nrpe!-H 10.0.0.13 -c check_so -a so-strelka-manager
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: so-strelka-manager is running on 10.0.0.13
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=Device Manager
+	check_command=check_http!-I 10.0.0.1 -S -p 443
+	has_been_checked=1
+	current_state=0
+	plugin_output=HTTP OK: Firepower 3100 Device Manager at 10.0.0.1
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=SSH
+	check_command=check_ssh!10.0.0.1
+	has_been_checked=1
+	current_state=0
+	plugin_output=SSH OK - management SSH on 10.0.0.1
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=SNMP
+	check_command=check_snmp!-H 10.0.0.1 -C monitor -o sysDescr.0
+	has_been_checked=1
+	current_state=0
+	plugin_output=SNMP OK - Cisco Firepower 3100
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=Inside Interface
+	check_command=check_snmp!-H 10.0.0.1 -C monitor -o ifOperStatus.inside
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: inside interface is up.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=Outside Interface
+	check_command=check_snmp!-H 10.0.0.1 -C monitor -o ifOperStatus.outside
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: outside interface is up.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=CPU
+	check_command=check_snmp!-H 10.0.0.1 -C monitor -o cpu
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: CPU 15% used.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=Memory
+	check_command=check_snmp!-H 10.0.0.1 -C monitor -o memory
+	has_been_checked=1
+	current_state=0
+	plugin_output=OK: memory 40% used.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=firewall01
+	service_description=Site-to-Site VPN
+	check_command=check_snmp!-H 10.0.0.1 -C monitor -o ipsecTunnelUptime "warn=uptime <1h" "crit=down"
+	has_been_checked=1
+	current_state=1
+	plugin_output=WARNING: IPsec tunnel to main office is up, but uptime is 8 minutes. Peer 198.51.100.10, 1 active SA.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=website01
+	service_description=URL Check
+	check_command=check_http!-H visitpueblo.org -S -p 443 -u /
+	has_been_checked=1
+	current_state=0
+	plugin_output=HTTP OK: https://visitpueblo.org/
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=website01
+	service_description=Certificate
+	check_command=check_http!-H visitpueblo.org -S -p 443 -C 30,14
+	has_been_checked=1
+	current_state=0
+	plugin_output=SSL OK - Certificate visitpueblo.org is valid.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=website01
+	service_description=HTTP Redirect
+	check_command=check_http!-H visitpueblo.org -p 80 -e 301
+	has_been_checked=1
+	current_state=0
+	plugin_output=HTTP OK: port 80 redirects to https://visitpueblo.org/
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=website01
+	service_description=Page Content
+	check_command=check_http!-H visitpueblo.org -S -p 443 -u / -s Pueblo
+	has_been_checked=1
+	current_state=0
+	plugin_output=HTTP OK: expected page content found.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=website01
+	service_description=DNS
+	check_command=check_dns!-H visitpueblo.org
+	has_been_checked=1
+	current_state=0
+	plugin_output=DNS OK: visitpueblo.org resolves.
+	last_check=1728000000
+	state_type=1
+	}
+
+servicestatus {
+	host_name=website01
+	service_description=Response Time
+	check_command=check_http!-H visitpueblo.org -S -p 443 -u / -w 500ms -c 2000ms
+	has_been_checked=1
+	current_state=1
+	plugin_output=WARNING: response time 750 ms. Warning at 500 ms, critical at 2000 ms.
+	last_check=1728000000
+	state_type=1
+	}

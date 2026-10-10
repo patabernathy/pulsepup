@@ -21,7 +21,7 @@ Features: search, state filters, column sorting, auto-refresh every 60 seconds, 
 
 ## Quick start (test with sample data)
 
-The project includes `sample-status.dat`, a real Nagios 4.4.14 export you can use for safe testing without touching live Nagios.
+The project includes `sample-status.dat`, a small fictional Nagios 4.x status file you can use for safe testing without touching live Nagios.
 
 ```bash
 cd /opt/pulsepup          # or wherever you placed the project
@@ -32,7 +32,7 @@ cp config.json.example config.json
 python app.py
 ```
 
-Open your browser to `http://127.0.0.1:8080`. You should see 21 hosts, 109 services, and 2 service problems.
+Open your browser to `http://127.0.0.1:8080`. You should see 6 hosts, 75 services, and 5 service problems (3 warning, 2 critical).
 
 ## Configuration
 
@@ -164,7 +164,7 @@ pulsepup/
 ├── config.json            # Your local config (not in git)
 ├── config.json.example    # Template config
 ├── requirements.txt       # Python dependencies
-├── sample-status.dat      # Test data (real Nagios 4.4.14 export)
+├── sample-status.dat      # Fictional test data
 ├── templates/
 │   └── index.html         # Dashboard page
 ├── static/

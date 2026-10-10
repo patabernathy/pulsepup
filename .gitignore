@@ -9,8 +9,6 @@ __pycache__/
 # Production configuration
 /config.json
 
-# Sensitive Nagios test data
-/sample-status.dat
 
 # Recovered conversations, transcripts, and summaries
 /recovered-context/
